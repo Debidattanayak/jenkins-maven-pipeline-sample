@@ -2,6 +2,7 @@ node {
   stage("Clone the project") {
     git branch: 'master', url: 'https://github.com/Debidattanayak/jenkins-maven-pipeline-sample.git'
   }
+  
 
   stage("Compilation") {
     sh "mvn clean install"
