@@ -1,18 +1,18 @@
 node {
   stage("Clone the project") {
-    git branch: 'master', url: 'https://github.com/brijeshsmita/jenkins-maven-pipeline-sample.git'
+    git branch: 'master', url: 'https://github.com/Debidattanayak/jenkins-maven-pipeline-sample.git'
   }
 
   stage("Compilation") {
-    bat "./mvnw clean install -DskipTests"
+    sh "mvn clean install"
   }
 
   stage("Tests and Deployment") {
     stage("Runing unit tests") {
-      bat "./mvnw test -Punit"
+      sh "mvn test -Punit"
     }
     stage("Deployment") {
-      bat './mvnw spring-boot:run -Dserver.port=8083 &'
+      sh 'mvn spring-boot:run -Dserver.port=8083 &'
     }
   }
 }
